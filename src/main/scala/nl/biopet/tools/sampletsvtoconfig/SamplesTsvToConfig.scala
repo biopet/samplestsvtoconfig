@@ -14,6 +14,7 @@ object SamplesTsvToConfig extends ToolCommand {
     val cmdArgs =
       parser.parse(args, Args()).getOrElse(throw new IllegalArgumentException)
 
+    require(cmdArgs.inputFiles.nonEmpty || cmdArgs.tagFiles.nonEmpty, "At least 1 input or tag file should be given")
 
     val configMap = stringFromInputs(cmdArgs.inputFiles, cmdArgs.tagFiles)
     cmdArgs.outputFile match {
