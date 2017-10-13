@@ -52,9 +52,10 @@ object SamplesTsvToConfig extends ToolCommand {
           if (libraryColumn != -1) Some(values(libraryColumn)) else None
 
         //FIXME: this is a workaround, should be removed after fixing #180
-        if (sample.head.isDigit || library.exists(_.head.isDigit))
-          throw new IllegalStateException(
-            "Sample or library may not start with a number")
+        //if (sample.head.isDigit || library.exists(_.head.isDigit))
+        //  throw new IllegalStateException(
+        //    "Sample or library may not start with a number")
+        // Fixed ?
 
         if (sampleLibCache.contains((sample, library)))
           throw new IllegalStateException(
