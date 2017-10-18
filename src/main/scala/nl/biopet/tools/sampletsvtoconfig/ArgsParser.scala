@@ -19,3 +19,4 @@ class ArgsParser(cmdName: String) extends AbstractOptParser[Args](cmdName) {
            |When the extension is .yml or .yaml the output is in yaml format, otherwise it is in json.
            |When no file is given the output goes to stdout as yaml.
          """.stripMargin
+}
