@@ -51,6 +51,9 @@ object SamplesTsvToConfig extends ToolCommand {
         val library =
           if (libraryColumn != -1) Some(values(libraryColumn)) else None
 
+        if (sample.head.isDigit || library.exists(_.head.isDigit))
+          throw new IllegalStateException(
+            "Sample or library may not start with a number") 
         if (sampleLibCache.contains((sample, library)))
           throw new IllegalStateException(
             s"Combination of $sample ${library.map("and " + _).getOrElse("")} is found multiple times")
