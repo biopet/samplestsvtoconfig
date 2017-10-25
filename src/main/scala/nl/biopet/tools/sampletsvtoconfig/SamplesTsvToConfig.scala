@@ -3,7 +3,7 @@ package nl.biopet.tools.sampletsvtoconfig
 import java.io.{File, PrintWriter}
 
 import nl.biopet.utils.tool.ToolCommand
-import nl.biopet.utils.config.Conversions
+import nl.biopet.utils.conversions
 
 import scala.collection.mutable
 import scala.io.Source
@@ -21,12 +21,12 @@ object SamplesTsvToConfig extends ToolCommand {
     cmdArgs.outputFile match {
       case Some(file)
           if file.getName.endsWith(".yml") || file.getName.endsWith(".yaml") =>
-        Conversions.mapToYamlFile(configMap, file)
+        conversions.mapToYamlFile(configMap, file)
       case Some(file) =>
         val writer = new PrintWriter(file)
-        writer.println(Conversions.mapToJson(configMap))
+        writer.println(conversions.mapToJson(configMap))
         writer.close()
-      case _ => println(Conversions.mapToJson(configMap))
+      case _ => println(conversions.mapToJson(configMap))
     }
   }
 
@@ -77,7 +77,7 @@ object SamplesTsvToConfig extends ToolCommand {
         }
       }
     librariesValues.foldLeft(Map[String, Any]())((acc, kv) =>
-      Conversions.mergeMaps(acc, kv))
+      conversions.mergeMaps(acc, kv))
   }
 
   def stringFromInputs(inputs: List[File],
@@ -86,12 +86,12 @@ object SamplesTsvToConfig extends ToolCommand {
       inputs
         .map(f => mapFromFile(f))
         .foldLeft(Map[String, Any]())((acc, kv) =>
-          Conversions.mergeMaps(acc, kv))
+          conversions.mergeMaps(acc, kv))
     val tags =
       tagsInputs
         .map(f => mapFromFile(f, tags = true))
         .foldLeft(Map[String, Any]())((acc, kv) =>
-          Conversions.mergeMaps(acc, kv))
-    Conversions.mergeMaps(map, tags)
+          conversions.mergeMaps(acc, kv))
+    conversions.mergeMaps(map, tags)
   }
 }

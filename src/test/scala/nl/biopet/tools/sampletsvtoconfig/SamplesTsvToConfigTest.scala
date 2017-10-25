@@ -3,7 +3,7 @@ package nl.biopet.tools.sampletsvtoconfig
 import java.io.File
 
 import nl.biopet.test.BiopetTest
-import nl.biopet.utils.config.Conversions
+import nl.biopet.utils.conversions
 import org.testng.annotations.Test
 import play.api.libs.json.Json
 
@@ -58,7 +58,7 @@ class SamplesTsvToConfigTest extends BiopetTest {
     val tsv = new File(resourcePath("/sample.tsv"))
     val json = SamplesTsvToConfig.stringFromInputs(List(tsv), Nil)
 
-    Conversions.mapToJson(json) shouldBe Json.parse("""|{
+    conversions.mapToJson(json) shouldBe Json.parse("""|{
                                                       |  "samples" : {
                                                       |    "Sample_ID_1" : {
                                                       |      "libraries" : {
