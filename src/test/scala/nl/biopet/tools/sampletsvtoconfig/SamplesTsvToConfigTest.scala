@@ -2,12 +2,12 @@ package nl.biopet.tools.sampletsvtoconfig
 
 import java.io.File
 
-import nl.biopet.test.BiopetTest
+import nl.biopet.utils.test.tools.ToolTest
 import nl.biopet.utils.conversions
 import org.testng.annotations.Test
 import play.api.libs.json.Json
 
-class SamplesTsvToConfigTest extends BiopetTest {
+class SamplesTsvToConfigTest extends ToolTest[Args] {
   @Test
   def testNoArgs(): Unit = {
     intercept[IllegalArgumentException] {

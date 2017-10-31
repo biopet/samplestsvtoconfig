@@ -8,7 +8,7 @@ import nl.biopet.utils.conversions
 import scala.collection.mutable
 import scala.io.Source
 
-object SamplesTsvToConfig extends ToolCommand {
+object SamplesTsvToConfig extends ToolCommand[Args] {
   def main(args: Array[String]): Unit = {
     val parser = new ArgsParser(toolName)
     val cmdArgs =
