@@ -8,6 +8,9 @@ import org.testng.annotations.Test
 import play.api.libs.json.Json
 
 class SamplesTsvToConfigTest extends ToolTest[Args] {
+
+  def toolCommand: SamplesTsvToConfig.type = SamplesTsvToConfig
+
   @Test
   def testNoArgs(): Unit = {
     intercept[IllegalArgumentException] {

@@ -9,6 +9,10 @@ import scala.collection.mutable
 import scala.io.Source
 
 object SamplesTsvToConfig extends ToolCommand[Args] {
+  def emptyArgs: Args = Args()
+  def argsParser = new ArgsParser(toolName)
+
+
   def main(args: Array[String]): Unit = {
     val parser = new ArgsParser(toolName)
     val cmdArgs =
