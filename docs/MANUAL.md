@@ -3,7 +3,7 @@
 The tool can be called as follows:
 
 ~~~ bash
-biopet tool SamplesTsvToConfig
+java -jar SamplesTsvToConfig-version.jar
 ~~~
 
 To open the help:
