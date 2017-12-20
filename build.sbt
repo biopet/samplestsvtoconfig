@@ -17,4 +17,5 @@ developers := List(
 scalaVersion := "2.11.11"
 
 libraryDependencies += "com.github.biopet" %% "tool-utils" % "0.2"
+libraryDependencies += "com.github.biopet" %% "common-utils" % "0.2"
 libraryDependencies += "com.github.biopet" %% "tool-test-utils" % "0.1" % Test

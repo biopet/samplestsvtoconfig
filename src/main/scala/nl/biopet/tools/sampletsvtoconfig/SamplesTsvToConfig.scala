@@ -4,6 +4,7 @@ import java.io.{File, PrintWriter}
 
 import nl.biopet.utils.tool.ToolCommand
 import nl.biopet.utils.conversions
+import nl.biopet.utils.Documentation.htmlTable
 
 import scala.collection.mutable
 import scala.io.Source
@@ -95,4 +96,94 @@ object SamplesTsvToConfig extends ToolCommand[Args] {
           conversions.mergeMaps(acc, kv))
     conversions.mergeMaps(map, tags)
   }
+
+  def descriptionText: String =
+    """
+      |This tool enables a user to create a full sample sheet in JSON format or
+      |YAML format, suitable for all Biopet Queue pipelines, from TSV file(s).
+    """.stripMargin
+
+  def manualText: String =
+    """
+      |A user provides a TAB separated file (TSV) with sample specific
+      |properties which are parsed into JSON format by the tool.
+      |For example, a user wants to add certain properties to the
+      |description of a sample, such as the treatment a sample received.
+      | Then a TSV file with an extra column called treatment is provided.
+      |The resulting file will have the 'treatment' property in it as well.
+      |The order of the columns is not relevant to the end result
+      |
+      |The tag files works the same only the value is prefixed in the key `tags`.
+      |
+    """.stripMargin
+
+
+  def exampleText: String =
+    s"""
+       |
+       |#### Sample definition
+       |
+       |To get the below example out of the tool one should provide 2 TSV files as follows:
+       |
+       |${
+      htmlTable(List("sample", "library", "bam"),
+        List(
+          List("Sample_ID_1", "Lib_ID_1", "MyFirst.bam"),
+          List("Sample_ID_2", "Lib_ID_2", "MySecond.bam")
+        ))
+    }
+       |
+       |The second TSV file can contain as much properties as you would like.
+       |Possible option would be: gender, age and family.
+       |Basically anything you want to pass to your pipeline is possible.
+       |
+       |${htmlTable(List("sample","treatment"),
+      List(
+        List("Sample_ID_1", "heatshock"),
+        List("Sample_ID_2", "heatshock")
+      ))}
+       |#### Example
+       |
+       |###### Yaml
+       |
+       |
+       |    samples:
+       |      Sample_ID_1:
+       |        treatment: heatshock
+       |       libraries:
+       |         Lib_ID_1:
+       |            bam: MyFirst.bam
+       |     Sample_ID_2:
+       |        treatment: heatshock
+       |       libraries:
+       |          Lib_ID_2:
+       |            bam: MySecond.bam
+       |
+       |
+       |###### Json
+       |
+       |
+       |    {
+       |      "samples" : {
+       |        "Sample_ID_1" : {
+       |          "treatment" : "heatshock",
+       |          "libraries" : {
+       |            "Lib_ID_1" : {
+       |              "bam" : "MyFirst.bam"
+       |            }
+       |          }
+       |        },
+       |        "Sample_ID_2" : {
+       |          "treatment" : "heatshock",
+       |          "libraries" : {
+       |            "Lib_ID_2" : {
+       |              "bam" : "MySecond.bam"
+       |            }
+       |          }
+       |        }
+       |      }
+       |    }
+       |
+       |
+     """.stripMargin
 }
