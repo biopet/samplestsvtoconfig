@@ -36,9 +36,8 @@ class ArgsParser(toolCommand: ToolCommand[Args])
   opt[File]('t', "tagFiles") unbounded () valueName "<file>" action { (x, c) =>
     c.copy(tagFiles = x :: c.tagFiles)
   } text "This works the same as for a normal input file. Difference is that it placed in a sub key 'tags' in the config file"
-  opt[File]('o', "outputFile") unbounded () valueName "<file>" action {
-    (x, c) =>
-      c.copy(outputFile = Some(x))
+  opt[File]('o', "outputFile") valueName "<file>" action { (x, c) =>
+    c.copy(outputFile = Some(x))
   } text """
            |When the extension is .yml or .yaml the output is in yaml format, otherwise it is in json.
            |When no file is given the output goes to stdout as yaml.
