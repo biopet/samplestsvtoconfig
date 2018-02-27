@@ -3,7 +3,7 @@ organizationName := "Biopet"
 
 startYear := Some(2014)
 
-name := "SampleTsvToConfig"
+name := "SamplesTsvToConfig"
 biopetUrlName := "samplestsvtoconfig"
 
 biopetIsTool := true
